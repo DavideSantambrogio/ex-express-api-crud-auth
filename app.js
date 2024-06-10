@@ -1,7 +1,8 @@
 const express = require('express');
 const app = express();
-const postRoutes = require('./routes/postRoutes');
+
 const { handle404Error, handle500Error } = require('./middlewares/errorMiddleware');
+const bcrypt = require('bcryptjs');
 
 app.use(express.json());
 
@@ -9,12 +10,19 @@ app.use(express.json());
 app.get('/', (req, res) => {
     res.send('<h1>Benvenuto nel mio blog!</h1>');
 });
+
 // Utilizzo delle rotte per i post
+const postRoutes = require('./routes/postRoutes');
 app.use('/api', postRoutes);
+
+// Utilizzo delle rotte per gli user
+const authRoutes = require('./routes/authRoutes');
+app.use('/auth', authRoutes);
 
 app.get('/favicon.ico', (req, res) => {
     res.status(404).send('Favicon non trovato');
 });
+
 
 // Middleware per gestire gli errori
 app.use(handle404Error); // Gestione errori 404

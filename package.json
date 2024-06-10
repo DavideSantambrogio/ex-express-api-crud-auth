@@ -3,12 +3,14 @@
   "version": "1.0.0",
   "description": "Esercizio\r - Partendo dall'esercizio di ieri, aggiungiamo l'autenticazione al nostro progetto! Create tutto il necessario (Model, Controller, rotte e validazioni) per implementare le due funzionalità principali:\r - Creazione nuovo utente: rotta POST /auth/register\r - Login utente: rotta POST /auth/login\r - Proteggete, attraverso un middleware che verifichi il token JWT passato nell'header della richiesta, le rotte di creazione, modifica e cancellazione della risorsa Post.\r - Aggiungete la policy CORS per consentire a qualunque dominio di accedere alle API (tanto siamo in locale :linguaccia_occhi_chiusi:).\r BONUS:\r - Aggiungete una relazione one-to-many fra i modelli User e Post.\r - Aggiungete un middleware che verifichi che un utente possa modificare o cancellare solo i Post a lui associati, altrimenti restituisca un errore 403.\r Buon lavoro!",
   "main": "app.js",
-"dependencies": {
+  "dependencies": {
     "@prisma/client": "^5.15.0",
     "accepts": "^1.3.8",
     "anymatch": "^3.1.3",
     "array-flatten": "^1.1.1",
     "balanced-match": "^1.0.2",
+    "bcrypt": "^5.1.1",
+    "bcryptjs": "^2.4.3",
     "binary-extensions": "^2.3.0",
     "body-parser": "^1.20.2",
     "brace-expansion": "^1.1.11",
@@ -56,6 +58,7 @@
     "is-extglob": "^2.1.1",
     "is-glob": "^4.0.3",
     "is-number": "^7.0.0",
+    "jsonwebtoken": "^9.0.2",
     "media-typer": "^0.3.0",
     "merge-descriptors": "^1.0.3",
     "methods": "^1.1.2",
