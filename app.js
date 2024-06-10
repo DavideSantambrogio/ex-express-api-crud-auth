@@ -1,10 +1,14 @@
 const express = require('express');
+const cors = require('cors');
 const app = express();
 
 const { handle404Error, handle500Error } = require('./middlewares/errorMiddleware');
 const bcrypt = require('bcryptjs');
 
 app.use(express.json());
+
+// Abilita CORS per tutte le richieste
+app.use(cors());
 
 // Rotte per gestire richieste alla homepage e alla favicon
 app.get('/', (req, res) => {
@@ -22,7 +26,6 @@ app.use('/auth', authRoutes);
 app.get('/favicon.ico', (req, res) => {
     res.status(404).send('Favicon non trovato');
 });
-
 
 // Middleware per gestire gli errori
 app.use(handle404Error); // Gestione errori 404
