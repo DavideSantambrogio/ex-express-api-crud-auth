@@ -1,9 +1,23 @@
 const express = require('express');
 const router = express.Router();
-const { registerUser, loginUser } = require('../controllers/authController');
+const { body } = require('express-validator');
+const { authValidation } = require('../validations/authValidation');
+const validateData = require('../middlewares/validationMiddleware');
+const authController = require('../controllers/authController');
 
-// Rotte per la registrazione e il login degli utenti
-router.post('/register', registerUser);
-router.post('/login', loginUser);
+// Endpoint per la registrazione di un nuovo utente
+router.post('/register', [
+    body('username').notEmpty().withMessage(authValidation.username.notEmpty.errorMessage),
+    body('email').notEmpty().withMessage(authValidation.email.notEmpty.errorMessage).isEmail().withMessage(authValidation.email.isEmail.errorMessage),
+    body('password').notEmpty().withMessage(authValidation.password.notEmpty.errorMessage),
+    validateData // Middleware per eseguire la validazione
+], authController.registerUser);
+
+// Endpoint per il login di un utente
+router.post('/login', [
+    body('username').notEmpty().withMessage(authValidation.username.notEmpty.errorMessage),
+    body('password').notEmpty().withMessage(authValidation.password.notEmpty.errorMessage),
+    validateData // Middleware per eseguire la validazione
+], authController.loginUser);
 
 module.exports = router;
