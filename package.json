@@ -37,6 +37,7 @@
     "etag": "^1.8.1",
     "express": "^4.19.2",
     "express-validator": "^7.1.0",
+    "faker": "^5.5.3",
     "fill-range": "^7.1.1",
     "finalhandler": "^1.2.0",
     "forwarded": "^0.2.0",
@@ -107,7 +108,12 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "nodemon app.js",
-    "migrate": "prisma migrate dev --name"
+    "migrate": "prisma migrate dev --name",
+    "seed:categories": "node seeders/categorySeeder.js",
+    "seed:tags": "node seeders/tagSeeder.js",
+    "seed:users": "node seeders/userSeeder.js",
+    "seed:posts": "node seeders/postSeeder.js",
+    "seed:all": "npm run seed:categories && npm run seed:tags && npm run seed:users && npm run seed:posts"
   },
   "keywords": [],
   "author": "",

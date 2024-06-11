@@ -7,8 +7,24 @@ const tags = [
     { name: 'React' },
     { name: 'Viaggi' },
     { name: 'Cucina Italiana' },
-    { name: 'Cucina Asiatica' }
+    { name: 'Cucina Asiatica' },
+    { name: 'Fitness' },
+    { name: 'Yoga' },
+    { name: 'Arte contemporanea' },
+    { name: 'Musica classica' },
+    { name: 'Film indipendenti' },
+    { name: 'Fantascienza' },
+    { name: 'Romanzi' },
+    { name: 'Fashion' },
+    { name: 'Fotografia di paesaggio' },
+    { name: 'Risparmio' },
+    { name: 'Sviluppo personale' },
+    { name: 'Giardinaggio urbano' },
+    { name: 'Cani' },
+    { name: 'Gatti' },
+    { name: 'Machine Learning' }
 ];
+
 
 async function main() {
     for (const tag of tags) {
