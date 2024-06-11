@@ -25,7 +25,7 @@ router.post('/posts', [
 ], postController.createPost);
 
 // Endpoint per ottenere tutti i post
-router.get('/posts', postController.getPosts);
+router.get('/', postController.getPosts);
 
 
 

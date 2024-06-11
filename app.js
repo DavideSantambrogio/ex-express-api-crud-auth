@@ -17,11 +17,19 @@ app.get('/', (req, res) => {
 
 // Utilizzo delle rotte per i post
 const postRoutes = require('./routes/postRoutes');
-app.use('/api', postRoutes);
+app.use('/api/posts', postRoutes);
 
 // Utilizzo delle rotte per gli user
 const authRoutes = require('./routes/authRoutes');
 app.use('/auth', authRoutes);
+
+// Utilizzo delle rotte per le categorie
+const categoryRoutes = require('./routes/categoryRoutes');
+app.use('/api/categories', categoryRoutes);
+
+// Utilizzo delle rotte per i tag
+const tagRoutes = require('./routes/tagRoutes');
+app.use('/api/tags', tagRoutes);
 
 app.get('/favicon.ico', (req, res) => {
     res.status(404).send('Favicon non trovato');

@@ -21,4 +21,15 @@ const createTag = async (name) => {
     }
 };
 
-module.exports = { createTag };
+// Funzione per ottenere tutti i tag dal database
+const getAllTags = async (req, res) => {
+    try {
+        const tags = await prisma.tag.findMany();
+        res.json(tags);
+    } catch (error) {
+        console.error('Errore durante il recupero dei tag:', error);
+        res.status(500).json({ error: 'Qualcosa è andato storto' });
+    }
+};
+
+module.exports = { createTag, getAllTags };

@@ -21,4 +21,19 @@ const createCategory = async (name) => {
     }
 };
 
-module.exports = { createCategory };
+// Funzione per recuperare tutte le categorie dal database
+const getAllCategories = async (req, res) => {
+    try {
+        const categories = await prisma.category.findMany();
+        res.json(categories);
+    } catch (error) {
+        console.error('Errore durante il recupero delle categorie:', error);
+        res.status(500).json({ error: 'Qualcosa è andato storto' });
+    }
+};
+
+// Esporta le funzioni createCategory e getAllCategories
+module.exports = {
+    createCategory,
+    getAllCategories
+};
