@@ -20,8 +20,8 @@ const postRoutes = require('./routes/postRoutes');
 app.use('/api/posts', postRoutes);
 
 // Utilizzo delle rotte per gli user
-const authRoutes = require('./routes/authRoutes');
-app.use('/auth', authRoutes);
+const userRoutes = require('./routes/userRoutes'); // Aggiunto il require per le routes degli utenti
+app.use('/api/users', userRoutes); // Utilizza '/api/users' per le routes degli utenti
 
 // Utilizzo delle rotte per le categorie
 const categoryRoutes = require('./routes/categoryRoutes');

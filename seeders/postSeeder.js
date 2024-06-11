@@ -18,6 +18,12 @@ const generateUniqueSlug = async (title) => {
     return uniqueSlug;
 };
 
+const getRandomImage = () => {
+    // Genera un URL casuale utilizzando Picsum Photos
+    const randomImageId = faker.datatype.number({ min: 1, max: 1000 });
+    return `https://picsum.photos/200/300?random=${randomImageId}`;
+};
+
 const seedPosts = async () => {
     try {
         const categories = await prisma.category.findMany();
@@ -35,10 +41,10 @@ const seedPosts = async () => {
             const published = faker.datatype.boolean(); // Pubblicato casualmente
             const categoryId = faker.random.arrayElement(categories).id; // Categoria casuale
             const userId = faker.random.arrayElement(users).id; // Utente casuale
-            const image = faker.image.imageUrl(); // URL di immagine casuale
             const tagIds = faker.random.arrayElements(tags, faker.datatype.number({ min: 1, max: 3 })).map(tag => tag.id); // Tags casuali
 
             const slug = await generateUniqueSlug(title);
+            const image = getRandomImage(); // URL casuale dell'immagine da Picsum Photos
             const post = await prisma.post.create({
                 data: {
                     title,
@@ -46,7 +52,7 @@ const seedPosts = async () => {
                     published,
                     categoryId,
                     userId,
-                    image, // Aggiungiamo l'URL dell'immagine
+                    image,
                     tags: {
                         connect: tagIds.map(id => ({ id }))
                     },
